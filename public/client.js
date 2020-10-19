@@ -5,6 +5,7 @@ console.log('Testing insert');
 
 function submit()
 {
+  console.log("Submitting!")
   // request the user from our app's sqlite database
   const userRequest = new XMLHttpRequest();
   userRequest.open('post', '/addRow');

@@ -13,8 +13,22 @@ function submit()
   userRequest.send(JSON.stringify({'id':document.getElementById("id").value, 'name': document.getElementById("name").value})); */
 
   $.ajax({
+    type: "POST",
+    url: '/addRow',
+    dataType: "json",
+    success: function(res) {
+        console.log("Success!", res)
+        var res_data = JSON.parse(res);
+        console.log(res_data);
+    },
+    error: function(res) {
+      console.log("Fail!", res)
+    }
+  });
+
+  /* $.ajax({
     type: "GET",
-    url: 'http://127.0.0.1:5000/users',
+    url: '/users',
     dataType: "json",
     success: function(res) {
         console.log("Success!")
@@ -24,5 +38,5 @@ function submit()
     error: function(res) {
       console.log("Fail!", res)
     }
-  });
+  }); */
 }

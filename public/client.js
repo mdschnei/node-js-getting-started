@@ -12,7 +12,7 @@ function submit()
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
   userRequest.send(JSON.stringify({'id':document.getElementById("id").value, 'name': document.getElementById("name").value})); */
 
-  /* $.ajax({
+  $.ajax({
     type: "POST",
     url: '/addRow',
     dataType: "json",
@@ -24,9 +24,9 @@ function submit()
     error: function(res) {
       console.log("Fail!", res)
     }
-  }); */
+  });
 
-  $.ajax({
+  /* $.ajax({
     type: "GET",
     url: '/users',
     dataType: "json",
@@ -38,5 +38,5 @@ function submit()
     error: function(res) {
       console.log("Fail!", res)
     }
-  });
+  }); */
 }

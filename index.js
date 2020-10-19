@@ -6,6 +6,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 })
+const request = require('request');
 const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path')
@@ -31,6 +32,15 @@ express()
       console.error(err);
       res.send("Error " + err);
     }
+  })
+  .get('/users', function(req, res) {
+    console.log("Requesting...")
+    request('https://jsonplaceholder.typicode.com/users', function(error, response, body) {
+        // console.log(error);
+        // console.log(response);
+        // console.log(body);
+        res.json(body)
+      });
   })
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e ejs index.js",
+    "start": "nodemon -e ejs,js index.js",
     "test": "node test.js"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
   "devDependencies": {
     "got": "^11.3.0",
     "nodemon": "^2.0.5",
+    "request": "^2.88.2",
     "tape": "^4.7.0"
   },
   "repository": {

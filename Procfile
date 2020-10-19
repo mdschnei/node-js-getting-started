@@ -1,1 +1,1 @@
-web: nodemon -e ejs index.js
+web: npm start

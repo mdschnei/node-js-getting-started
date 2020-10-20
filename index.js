@@ -1,15 +1,18 @@
 const cool = require('cool-ascii-faces')
-const { Pool } = require('pg')
+const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
-})
+});
 const request = require('request');
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 const PORT = process.env.PORT || 5000
+
+var jsonParser = bodyParser.json();
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -38,7 +41,7 @@ express()
         res.json(body)
       });
   })
-  .post('/addRow', async function(req, res) {
+  .post('/addRow', jsonParser, async function(req, res) {
     console.log(req.query)
     console.log(req.query.id, req.query.name)
     try {
@@ -53,7 +56,7 @@ express()
       res.send("Error " + err);
     }
   })
-  .post('/deleteRow', async function(req, res) {
+  .post('/deleteRow', jsonParser, async function(req, res) {
     console.log(req.query)
     console.log(req.query.id)
     try {

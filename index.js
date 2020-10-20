@@ -46,9 +46,7 @@ express()
     console.log(req.body.id, req.body.name)
     try {
       const client = await pool.connect();
-      client.query(`INSERT into test_table values (${req.body.id}, ${req.body.name})`);
-      // client.query(`INSERT into test_table values (6, 'Test')`);
-
+      client.query(`INSERT into test_table values (${req.body.id}, '${req.body.name}')`);
       client.release();
       res.send("Success! " + res);
     } catch (err) {

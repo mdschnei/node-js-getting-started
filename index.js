@@ -8,11 +8,8 @@ const pool = new Pool({
 })
 const request = require('request');
 const express = require('express')
-const bodyParser = require('body-parser');
 const path = require('path')
 const PORT = process.env.PORT || 5000
-
-var jsonParser = bodyParser.json();
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -41,13 +38,25 @@ express()
         res.json(body)
       });
   })
-  .post('/addRow', jsonParser, async function(req, res) {
-    console.log(req)
-    console.log(req.id, req.name)
-    // console.log(res)
+  .post('/addRow', async function(req, res) {
+    console.log(req.query)
+    console.log(req.query.id, req.query.name)
     try {
       const client = await pool.connect();
-      client.query("INSERT into test_table values (4, 'test value')");
+      client.query(`INSERT into test_table values (${req.query.id}, ${req.query.name})`);
+      client.release();
+      res.send("Success! " + res);
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
+  .post('/deleteRow', async function(req, res) {
+    console.log(req.query)
+    console.log(req.query.id)
+    try {
+      const client = await pool.connect();
+      client.query(`DELETE from test_table where id=${req.query.id}`);
       client.release();
       res.send("Success! " + res);
     } catch (err) {

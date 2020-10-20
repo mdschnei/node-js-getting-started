@@ -1,12 +1,10 @@
 // client-side js
 // run by the browser each time your view template referencing it is loaded
 
-console.log('Testing insert');
+console.log('Scripts loaded successfully');
 
-function submit()
-{
-  console.log("Submitting!")
-  // request the user from our app's sqlite database
+function addRow() {
+  console.log("Adding a row...")
   const userRequest = new XMLHttpRequest();
   userRequest.open('post', '/addRow');
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
@@ -39,4 +37,12 @@ function submit()
       console.log("Fail!", res)
     }
   }); */
+}
+
+function deleteRow() {
+  console.log("Deleting a row...")
+  const userRequest = new XMLHttpRequest();
+  userRequest.open('post', '/deleteRow');
+  userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+  userRequest.send(JSON.stringify({'id':document.getElementById("id").value, 'name': document.getElementById("name").value}));
 }

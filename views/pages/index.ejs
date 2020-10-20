@@ -8,11 +8,18 @@
     <body>
         <div class="wrapper">
             <p class="header-text">What's Cooking, Good Looking?</p>
+            
             <label for="id">ID</label>
             <input type="text" id="id"/>
             <label for="name">Name</label>
             <input type="text" id="name"/> 
-            <button onclick="submit()">Submit</button>
+            <!-- <label for="insert">Insert</label>
+            <input type="radio" id="insert" name="queryType" value="insert">
+            <label for="delete">Delete</label>
+            <input type="radio" id="delete" name="queryType" value="delete"> -->
+
+            <button onclick="addRow()">Insert Row</button>
+            <button onclick="deleteRow()">Delete Row</button>
           
         </div>
     </body>

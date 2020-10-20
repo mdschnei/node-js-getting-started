@@ -43,7 +43,8 @@ express()
   })
   .post('/addRow', jsonParser, async function(req, res) {
     console.log(req)
-    console.log(res)
+    console.log(req.id, req.name)
+    // console.log(res)
     try {
       const client = await pool.connect();
       client.query("INSERT into test_table values (4, 'test value')");

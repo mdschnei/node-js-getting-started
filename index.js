@@ -42,10 +42,13 @@ express()
       });
   })
   .post('/addRow', jsonParser, async function(req, res) {
+    console.log(req)
+    console.log(res)
     try {
       const client = await pool.connect();
       client.query("INSERT into test_table values (4, 'test value')");
       client.release();
+      res.send("Success! " + res);
     } catch (err) {
       console.error(err);
       res.send("Error " + err);

@@ -42,13 +42,11 @@ express()
       });
   })
   .post('/addRow', jsonParser, async function(req, res) {
-    console.log(req)
     console.log(req.body)
-    console.log(req.query)
-    console.log(req.query.id, req.query.name)
+    console.log(req.body.id, req.body.name)
     try {
       const client = await pool.connect();
-      client.query(`INSERT into test_table values (${req.query.id}, ${req.query.name})`);
+      client.query(`INSERT into test_table values (${req.body.id}, ${req.body.name})`);
       // client.query(`INSERT into test_table values (6, 'Test')`);
 
       client.release();
@@ -59,11 +57,11 @@ express()
     }
   })
   .post('/deleteRow', jsonParser, async function(req, res) {
-    console.log(req.query)
-    console.log(req.query.id)
+    console.log(req.body)
+    console.log(req.body.id)
     try {
       const client = await pool.connect();
-      client.query(`DELETE from test_table where id=${req.query.id}`);
+      client.query(`DELETE from test_table where id=${req.body.id}`);
       client.release();
       res.send("Success! " + res);
     } catch (err) {

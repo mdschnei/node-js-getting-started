@@ -44,7 +44,7 @@ express()
     try {
       const client = await pool.connect();
       // client.query(`INSERT into test_table values (${req.query.id}, ${req.query.name})`);
-      client.query(`INSERT into test_table values (5, "Test")`);
+      client.query(`INSERT into test_table values (6, 'Test')`);
 
       client.release();
       res.send("Success! " + res);

@@ -42,12 +42,14 @@ express()
       });
   })
   .post('/addRow', jsonParser, async function(req, res) {
+    console.log(req)
+    console.log(req.body)
     console.log(req.query)
     console.log(req.query.id, req.query.name)
     try {
       const client = await pool.connect();
-      // client.query(`INSERT into test_table values (${req.query.id}, ${req.query.name})`);
-      client.query(`INSERT into test_table values (6, 'Test')`);
+      client.query(`INSERT into test_table values (${req.query.id}, ${req.query.name})`);
+      // client.query(`INSERT into test_table values (6, 'Test')`);
 
       client.release();
       res.send("Success! " + res);

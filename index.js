@@ -24,7 +24,6 @@ express()
     try {
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM test_table');
-      client.query('INSERT into test_table values (3, "dynamically added value")');
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
       client.release();
@@ -45,7 +44,7 @@ express()
   .post('/addRow', jsonParser, async function(req, res) {
     try {
       const client = await pool.connect();
-      client.query('INSERT into test_table values (3, "dynamically added value")');
+      client.query("INSERT into test_table values (4, 'test value')");
       client.release();
     } catch (err) {
       console.error(err);
